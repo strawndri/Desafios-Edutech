@@ -43,5 +43,4 @@ def perguntarNovamente():
     else:
         formatar('Obrigada por participar! :)', True)
 
-
 perguntar()
