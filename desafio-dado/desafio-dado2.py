@@ -16,7 +16,7 @@ def jogarDado():
 
 def checarResposta(resposta):
     if (resposta not in 'SN'):
-        r = input('> Digite novamente: ').upper().split()[0]
+        r = input('> Digite novamente: ')[0].upper()
         resposta = checarResposta(r)
     elif (resposta == 'N'):
         formatar('Obrigada por participar! :)', True)
@@ -25,7 +25,7 @@ def checarResposta(resposta):
 
 def jogarPartida(jogou):
     if (jogou == 0):
-        resp = input('> Deseja jogar o dado? [S/N] ').upper().split()[0]
+        resp = input('> Deseja jogar o dado? [S/N] ')[0].upper()
         resp = checarResposta(resp)
         if (resp == 'S'):
             jogarDado()
@@ -33,7 +33,7 @@ def jogarPartida(jogou):
             jogarPartida(jogou)
 
     elif (jogou == 1):
-        resp = input('> Deseja jogar novamente? [S/N] ').upper().split()[0]
+        resp = input('> Deseja jogar novamente? [S/N] ')[0].upper()
         resp = checarResposta(resp)
         if (resp == 'S'):
             jogarDado()
