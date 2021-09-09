@@ -30,7 +30,7 @@ for item in range(1, 5):
             message('--- [ERRO] Digite um valor válido.', 'red')
         else:
             if (n > 10 or n < 0):
-                message('--- [ERRO] Digite um valor entre 0 e 10', 'red')
+                message('--- [ERRO] Digite um valor entre 0 e 10.', 'red')
             else:
                 break
 
@@ -39,14 +39,14 @@ for item in range(1, 5):
 
 if sum == 0:
     average = 0
-    msg = 'Você foi reprovado(a) :('
+    msg = 'Você foi reprovado(a). :('
 else:
     average = sum / 4
 
     if ( 4 <= average < 6):
         msg = 'Você está de recuperação.'
     elif (average <= 3.9):
-        msg = 'Você foi reprovado(a) :('
+        msg = 'Você foi reprovado(a). :('
     else:
         msg = 'Você foi aprovado(a)! :)'
 
