@@ -1,4 +1,4 @@
-# 🌈 Exemplos de Possíveis Resultados:
+# 🌈 Exemplos com Possíveis Resultados:
 
 ## ⭐ Aprovação:
 ![img](img/test1.png)
