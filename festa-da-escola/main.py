@@ -5,9 +5,18 @@ options = ['Comprar fichas', 'Gastar fichas', 'Ver o Estoque']
 
 
 s.formatarTexto('Bem-Vinda(o) à Festa Escolar!', type='title')
-e.apresentarMenu(options)
+e.apresentar_menu(options)
 
 print('-' * 50)
+
+
+def executar_acao(acao):
+    if (acao == 1):
+       e.comprar_fichas()
+    #elif (acao == 2):
+     #   e.gastar_fichas()
+    #else:
+     #   e.ver_estoque()
 
 while True:
 
@@ -18,6 +27,8 @@ while True:
     else:
         if (op > 0 and op <= 3):
             print(f'Você escolheu: {options[op - 1]}')
+            executar_acao(op)
             break
         else:
             print('[ERRO] - A opção digitada é inválida.')
+
