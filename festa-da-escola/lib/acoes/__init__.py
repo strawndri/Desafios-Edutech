@@ -6,3 +6,4 @@ def apresentar_menu(list):
     for i, item in enumerate(list):
         print(f"[{i + 1}] : {item}")
     print('-' * 50)
+
