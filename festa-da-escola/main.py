@@ -2,25 +2,50 @@ from lib import acoes as ac, style
 from time import sleep
 
 estoque = 1000
-opcoes_gerais = ['Comprar fichas', 'Gastar fichas', 'Visualizar o estoque']
+fichas = 0
+opcoes = ['Comprar fichas', 'Gastar fichas', 'Visualizar o estoque']
+fechamento = ['Finalizar a festa', 'Continuar o programa', 'Nova pessoa']
 
 style.formatar_texto('Bem vinda(o) à Festa da Escola!')
-ac.apresentar_menu(opcoes_gerais)
 
 while True:
-    try:
-        opcao = int(input('> Escolha um dos itens acima: '))
-    except ValueError:
-        style.formatar_texto('ERRO')
-        print('Tente novamente - ', end='')
-    else:
-        if(opcao > 0 and opcao <= 3):
-            print(f'Opção escolhida: {opcoes_gerais[opcao - 1]}')
-            sleep(1)
-            break
-        else:
-            style.formatar_texto('O número digitado é inválido')
+    ac.apresentar_menu(opcoes)
+
+    while True:
+        try:
+            opcao = int(input('> Escolha um dos itens acima: '))
+        except ValueError:
+            style.formatar_texto('ERRO')
             print('Tente novamente - ', end='')
+        else:
+            if(opcao > 0 and opcao <= 3):
+                print(f'Opção escolhida: {opcoes[opcao - 1]}')
+                sleep(1)
+                break
+            else:
+                style.formatar_texto('O número digitado é inválido')
+                print('Tente novamente - ', end='')
 
 
-estoque = ac.executar_acoes(opcao, estoque)
+    estoque, fichas = ac.executar_acoes(opcao, estoque, fichas)
+    print(estoque, fichas)
+    ac.apresentar_menu(fechamento)
+
+    while True:
+        try:
+            opcao_f = int(input('> Escolha um dos itens acima: '))
+        except ValueError:
+            style.formatar_texto('ERRO')
+            print('Tente novamente - ', end='')
+        else:
+            if(opcao_f > 0 and opcao_f <= 3):
+                print(f'Opção escolhida: {fechamento[opcao_f - 1]}')
+                sleep(1)
+                break
+            else:
+                style.formatar_texto('O número digitado é inválido')
+                print('Tente novamente - ', end='')
+
+    if (opcao_f == 1):
+        print('Fim')
+        break
