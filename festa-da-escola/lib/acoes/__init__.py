@@ -57,8 +57,11 @@ def gastar_fichas(estoque, fichas):
 
     if (fichas == 0):
         escolha = input('Você não possui fichas, deseja comprar? ').upper().split()[0]
+
         if escolha == 'S':
             novo_estoque, fichas = comprar_fichas(estoque, fichas)
+        else:
+            novo_estoque, fichas = 0, 0
     else:
         style.formatar_texto('Há diversas barracas que você pode ir: ', tipo='menu')
         apresentar_menu('Lista de Barracas disponíveis', barracas)

@@ -20,4 +20,17 @@ while True:
 
     if (opcao_f == 1):
         style.formatar_texto('Fim da festa', tipo='especial')
+        sleep(1)
         break
+    elif (opcao_f == 3):
+        estoque = 1000
+        fichas = 0
+
+        style.formatar_texto('Obrigada por participar!', tipo='especial')
+        print('Finalizando o programa e organizando o estoque...')
+        sleep(1)
+
+        print('\n' * 3)
+        style.formatar_texto('Bem vinda(o) à Festa da Escola!', tipo='especial')
+
+
