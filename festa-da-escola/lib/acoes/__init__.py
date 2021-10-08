@@ -36,6 +36,8 @@ def executar_acoes(item, estoque, f):
         novo_estoque, fichas = comprar_fichas(estoque, f)
     elif (item == 2):
         novo_estoque, fichas = gastar_fichas(estoque, f)
+    elif (item == 3):
+        novo_estoque, fichas = visualizar_estoque(estoque, f)
 
     return novo_estoque, fichas
 
@@ -65,3 +67,10 @@ def gastar_fichas(estoque, fichas):
         fichas = fichas - quantidade
 
     return novo_estoque, fichas
+
+def visualizar_estoque(estoque, fichas):
+    style.formatar_texto('ESTOQUE')
+    print(f'O total de fichas no estoque é: {estoque}')
+    print(f'Você possui {fichas} fichas.')
+
+    return estoque, fichas

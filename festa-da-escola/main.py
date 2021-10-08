@@ -14,7 +14,6 @@ while True:
     opcao = ac.tratar_erro(opcoes)
 
     estoque, fichas = ac.executar_acoes(opcao, estoque, fichas)
-    print(estoque, fichas)
     ac.apresentar_menu('Menu de Finalização', fechamento)
 
     opcao_f = ac.tratar_erro(fechamento)
