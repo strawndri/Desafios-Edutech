@@ -45,7 +45,15 @@ def comprar_fichas(estoque, fichas):
 
     style.formatar_texto('CAIXA GERAL')
     print('Olá, eu sou o Caixa Geral!')
-    quantidade = int(input('Quantas fichas deseja comprar? '))
+
+    while True:
+        quantidade = int(input('Quantas fichas deseja comprar? '))
+
+        if (quantidade > 0 and quantidade <= estoque):
+            break
+        else:
+            print('Tente Novamente -> ', end='')
+
     novo_estoque = estoque - quantidade
     fichas = quantidade + fichas
 
