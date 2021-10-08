@@ -73,7 +73,16 @@ def gastar_fichas(estoque, fichas):
     else:
         style.formatar_texto('Há diversas barracas que você pode ir: ', tipo='menu')
         apresentar_menu('Lista de Barracas disponíveis', barracas)
-        quantidade = int(input('Quantas fichas deseja gastar? '))
+
+        while True:
+            quantidade = int(input('Quantas fichas deseja gastar? '))
+
+            if (quantidade > 0 and quantidade <= fichas):
+                break
+            else:
+                print('Numero de fichas inválido.')
+                print('Tente Novamente -> ', end='')
+
         novo_estoque = estoque + quantidade
         fichas = fichas - quantidade
 
