@@ -4,12 +4,12 @@ barracas = ['Cadeia', 'Correio Elegante', 'Churrasco',
                 'Fliperama', 'Milho Verde', 'Morango',
                 'Pebolim', 'Pipoca', 'Sonho', 'Tiro ao Alvo']
 
-def apresentar_menu(list):
+def apresentar_menu(titulo, list):
 
-    style.formatar_texto('Menu Principal', tipo='menu')
+    style.formatar_texto(titulo, tipo='menu')
     for i, item in enumerate(list):
         print(f"[{i + 1}] : {item}")
-    print('-' * 50)
+    print('—' * 50)
 
 
 def executar_acoes(item, estoque, f):
@@ -27,21 +27,24 @@ def comprar_fichas(estoque, fichas):
     style.formatar_texto('CAIXA GERAL')
     print('Olá, eu sou o Caixa Geral!')
     quantidade = int(input('Quantas fichas deseja comprar? '))
-    return (estoque - quantidade), (quantidade + fichas)
+    novo_estoque = estoque - quantidade
+    fichas = quantidade + fichas
+
+    return novo_estoque, fichas
 
 def gastar_fichas(estoque, fichas):
+
+    style.formatar_texto('CAIXA DE BARRACA')
 
     if (fichas == 0):
         escolha = input('Você não possui fichas, deseja comprar? ').upper().split()[0]
         if escolha == 'S':
-            comprar_fichas(estoque, fichas)
-        else:
-            print('ok')
+            novo_estoque, fichas = comprar_fichas(estoque, fichas)
+    else:
+        style.formatar_texto('Há diversas barracas que você pode ir: ', tipo='menu')
+        apresentar_menu('Lista de Barracas disponíveis', barracas)
+        quantidade = int(input('Quantas fichas deseja gastar? '))
+        novo_estoque = estoque + quantidade
+        fichas = fichas - quantidade
 
-
-    style.formatar_texto('CAIXA DE BARRACA')
-    style.formatar_texto('Há diversas barracas que você pode ir: ', tipo='menu')
-    apresentar_menu(barracas)
-
-    quantidade = int(input('Quantas fichas deseja gastar? '))
-    return estoque + quantidade, fichas - quantidade
+    return novo_estoque, fichas

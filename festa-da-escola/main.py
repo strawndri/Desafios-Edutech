@@ -6,10 +6,10 @@ fichas = 0
 opcoes = ['Comprar fichas', 'Gastar fichas', 'Visualizar o estoque']
 fechamento = ['Finalizar a festa', 'Continuar o programa', 'Nova pessoa']
 
-style.formatar_texto('Bem vinda(o) à Festa da Escola!')
+style.formatar_texto('Bem vinda(o) à Festa da Escola!', tipo='especial')
 
 while True:
-    ac.apresentar_menu(opcoes)
+    ac.apresentar_menu('Menu Inicial', opcoes)
 
     while True:
         try:
@@ -29,7 +29,7 @@ while True:
 
     estoque, fichas = ac.executar_acoes(opcao, estoque, fichas)
     print(estoque, fichas)
-    ac.apresentar_menu(fechamento)
+    ac.apresentar_menu('Menu de Finalização', fechamento)
 
     while True:
         try:
@@ -47,5 +47,5 @@ while True:
                 print('Tente novamente - ', end='')
 
     if (opcao_f == 1):
-        print('Fim')
+        style.formatar_texto('Fim da festa', tipo='especial')
         break
