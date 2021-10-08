@@ -1,4 +1,5 @@
 from lib import style
+from time import sleep
 
 barracas = ['Cadeia', 'Correio Elegante', 'Churrasco',
                 'Fliperama', 'Milho Verde', 'Morango',
@@ -11,6 +12,23 @@ def apresentar_menu(titulo, list):
         print(f"[{i + 1}] : {item}")
     print('—' * 50)
 
+def tratar_erro(list):
+    while True:
+        try:
+            opcao = int(input('> Escolha um dos itens acima: '))
+        except ValueError:
+            style.formatar_texto('ERRO')
+            print('Tente novamente - ', end='')
+        else:
+            if(opcao > 0 and opcao <= 3):
+                print(f'Opção escolhida: {list[opcao - 1]}')
+                sleep(1)
+                break
+            else:
+                style.formatar_texto('O número digitado é inválido')
+                print('Tente novamente - ', end='')
+
+    return opcao
 
 def executar_acoes(item, estoque, f):
 
@@ -20,7 +38,6 @@ def executar_acoes(item, estoque, f):
         novo_estoque, fichas = gastar_fichas(estoque, f)
 
     return novo_estoque, fichas
-
 
 def comprar_fichas(estoque, fichas):
 
