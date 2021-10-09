@@ -7,7 +7,7 @@ barracas = ['Cadeia', 'Correio Elegante', 'Churrasco',
 
 def apresentar_menu(titulo, list):
 
-    style.formatar_texto(titulo, tipo='menu')
+    style.formatar_texto(titulo, tipo='menu', cor='blue')
     for i, item in enumerate(list):
         print(f"[{i + 1}] : {item}")
     print('—' * 50)
@@ -17,7 +17,7 @@ def tratar_erro(list):
         try:
             opcao = int(input('> Escolha um dos itens acima: '))
         except ValueError:
-            style.formatar_texto('ERRO')
+            style.formatar_texto('ERRO', cor='red')
             print('Tente novamente - ', end='')
         else:
             if(opcao > 0 and opcao <= 3):
@@ -25,7 +25,7 @@ def tratar_erro(list):
                 sleep(1)
                 break
             else:
-                style.formatar_texto('O número digitado é inválido')
+                style.formatar_texto('O número digitado é inválido', cor='red')
                 print('Tente novamente - ', end='')
 
     return opcao
@@ -43,7 +43,7 @@ def executar_acoes(item, estoque, f):
 
 def comprar_fichas(estoque, fichas):
 
-    style.formatar_texto('CAIXA GERAL')
+    style.formatar_texto('CAIXA GERAL', cor='yellow')
     print('Olá, eu sou o Caixa Geral!')
 
     while True:
@@ -52,6 +52,7 @@ def comprar_fichas(estoque, fichas):
         if (quantidade > 0 and quantidade <= estoque):
             break
         else:
+            style.formatar_texto(f'Digite um valor válido para as {estoque} fichas do estoque!', cor='red')
             print('Tente Novamente -> ', end='')
 
     novo_estoque = estoque - quantidade
@@ -61,7 +62,7 @@ def comprar_fichas(estoque, fichas):
 
 def gastar_fichas(estoque, fichas):
 
-    style.formatar_texto('CAIXA DE BARRACA')
+    style.formatar_texto('CAIXA DE BARRACA', cor='yellow')
 
     if (fichas == 0):
         escolha = input('Você não possui fichas, deseja comprar? ').upper().split()[0]
@@ -69,6 +70,7 @@ def gastar_fichas(estoque, fichas):
         if escolha == 'S':
             novo_estoque, fichas = comprar_fichas(estoque, fichas)
         else:
+            print('Finalizando processamento...')
             novo_estoque, fichas = 0, 0
     else:
         style.formatar_texto('Há diversas barracas que você pode ir: ', tipo='menu')
@@ -86,10 +88,11 @@ def gastar_fichas(estoque, fichas):
         novo_estoque = estoque + quantidade
         fichas = fichas - quantidade
 
+    sleep(1)
     return novo_estoque, fichas
 
 def visualizar_estoque(estoque, fichas):
-    style.formatar_texto('ESTOQUE')
+    style.formatar_texto('ESTOQUE', cor='yellow')
     print(f'O total de fichas no estoque é: {estoque}')
     print(f'Você possui {fichas} fichas.')
 
