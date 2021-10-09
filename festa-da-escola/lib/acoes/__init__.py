@@ -12,23 +12,33 @@ def apresentar_menu(titulo, list):
         print(f"[{i + 1}] : {item}")
     print('—' * 60)
 
-def tratar_erro(list):
-    while True:
-        try:
-            opcao = int(input('> Escolha um dos itens acima: '))
-        except ValueError:
-            style.formatar_texto('ERRO', cor='red')
-            print('Tente novamente - ', end='')
-        else:
-            if(opcao > 0 and opcao <= 5):
-                print(f'Opção escolhida: {list[opcao - 1]}')
-                sleep(1)
-                break
-            else:
-                style.formatar_texto('O número digitado é inválido', cor='red')
-                print('Tente novamente - ', end='')
+def tratar_erro(i='default', msg=''):
 
-    return opcao
+    if (i == 'default'):
+        while True:
+           try:
+               resposta = int(input(msg))
+           except:
+               style.formatar_texto('O valor inserido é inválido.')
+           else:
+               break
+    else:
+        while True:
+            try:
+                resposta = int(input('> Escolha um dos itens acima: '))
+            except ValueError:
+                style.formatar_texto('ERRO', cor='red')
+                print('Tente novamente - ', end='')
+            else:
+                if(resposta > 0 and resposta <= 5):
+                    print(f'Opção escolhida: {i[resposta - 1]}')
+                    sleep(1)
+                    break
+                else:
+                    style.formatar_texto('O número digitado é inválido', cor='red')
+                    print('Tente novamente - ', end='')
+
+    return resposta
 
 def executar_acoes(item, estoque, f):
 
@@ -50,7 +60,7 @@ def comprar_fichas(estoque, fichas):
     print('Olá, eu sou o Caixa Geral!')
 
     while True:
-        quantidade = int(input('Quantas fichas deseja comprar? '))
+        quantidade = tratar_erro(msg='Quantas fichas deseja comprar? ')
 
         if (quantidade > 0 and quantidade <= estoque):
             break
@@ -80,12 +90,12 @@ def gastar_fichas(estoque, fichas):
         apresentar_menu('Lista de Barracas disponíveis', barracas)
 
         while True:
-            quantidade = int(input('Quantas fichas deseja gastar? '))
+            quantidade = tratar_erro(msg='Quantas fichas deseja gastar? ')
 
             if (quantidade > 0 and quantidade <= fichas):
                 break
             else:
-                style.formatar_texto(f'Numero de fichas inválido, você possui {fichas}.', cor='red')
+                style.formatar_texto(f'Número de fichas inválido, você possui {fichas}.', cor='red')
                 print('Tente Novamente -> ', end='')
 
         novo_estoque = estoque + quantidade
