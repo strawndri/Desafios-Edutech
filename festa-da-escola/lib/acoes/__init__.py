@@ -47,7 +47,6 @@ def executar_acoes(item, estoque, f):
         print('Aguarde um instante: finalizando a compra...')
     elif (item == 2):
         novo_estoque, fichas = gastar_fichas(estoque, f)
-        print('Aguarde um instante: retornando fichas ao caixa geral...')
     elif (item == 3):
         novo_estoque, fichas = visualizar_estoque(estoque, f)
 
@@ -78,7 +77,7 @@ def gastar_fichas(estoque, fichas):
     style.formatar_texto('CAIXA DE BARRACA', cor='yellow')
 
     if (fichas == 0):
-        escolha = input('Você não possui fichas, deseja comprar? ').upper().split()[0]
+        escolha = input('Você não possui fichas, deseja comprar? [S/N] ').upper().split()[0][0]
 
         if escolha == 'S':
             novo_estoque, fichas = comprar_fichas(estoque, fichas)
@@ -93,6 +92,7 @@ def gastar_fichas(estoque, fichas):
             quantidade = tratar_erro(msg='Quantas fichas deseja gastar? ')
 
             if (quantidade > 0 and quantidade <= fichas):
+                print('Aguarde um instante: retornando fichas ao caixa geral...')
                 break
             else:
                 style.formatar_texto(f'Número de fichas inválido, você possui {fichas}.', cor='red')
