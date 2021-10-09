@@ -11,15 +11,15 @@ def formatar_texto(txt, tipo='default', cor='default'):
     print(colors[cor], end='')
 
     if (tipo == 'default'):
-        print('=' * 50)
-        print(txt.center(50))
-        print('=' * 50, colors['default'])
+        print('=' * 60)
+        print(txt.center(60))
+        print('=' * 60, colors['default'])
     elif (tipo == 'menu'):
         print(colors[cor], end='')
-        print('—' * 50)
-        print(txt.center(50))
-        print('—' * 50, colors['default'])
+        print('—' * 60)
+        print(txt.center(60))
+        print('—' * 60, colors['default'])
     elif (tipo == 'especial'):
-        print('━' * 50)
-        print(txt.upper().center(50))
-        print('━' * 50, colors['default'])
+        print('━' * 60)
+        print(txt.upper().center(60))
+        print('━' * 60, colors['default'])
