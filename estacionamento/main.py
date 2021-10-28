@@ -41,7 +41,22 @@ def realizar_escolha():
 
     if ocupadas >= total:
         print('Infelizmente estamos com todas as vagas ocupadas.')
+        resposta = False
+    else:
+        print(f'Sua vaga é: {ocupadas + 1}')
+        resposta = True
 
+    return resposta, option
+def pagamento(option, caixa):
+
+    if (option == 1):
+        caixa += 5
+    elif (option == 2):
+        caixa += 15
+    elif (option == 3):
+        caixa += 20
+    else:
+        caixa += 50
 
 # Programa ---------
 
@@ -58,4 +73,7 @@ caixa = 0
 
 print_txt('Bem-vinda(o) ao nosso Estacionamento!', type='title')
 menu()
-realizar_escolha()
+resposta, option = realizar_escolha()
+
+if (resposta == True):
+    pagamento(caixa, option)
