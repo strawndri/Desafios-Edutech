@@ -47,17 +47,11 @@ def realizar_escolha():
         resposta = True
     else:
 
-        while i <= option:
-            print(i)
-            for item in veiculos[option - 2].values():
-                print(item)
+        while i < option:
+            for item in veiculos[i - 1].values():
                 indisponivel += item[0]
-                print(f'indisponivel = {indisponivel}')
             i += 1
-            option -= 1
-
-
-
+            
         print(f'Sua vaga é: {indisponivel + 1}')
         resposta = True
 
