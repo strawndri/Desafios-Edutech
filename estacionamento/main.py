@@ -24,7 +24,7 @@ def menu():
 
 def realizar_escolha():
 
-    total, ocupadas = 0, 0
+    total, indisponivel, i= 0, 0, 1
 
     while True:
         try:
@@ -35,18 +35,35 @@ def realizar_escolha():
         if (option >= 1 and option <= 4):
             break
 
-    for item in veiculos[option].values():
+    for item in veiculos[option - 1].values():
         total = item[0]
-        ocupadas = item[1]
+        indisponivel = item[1]
 
-    if ocupadas >= total:
+    if indisponivel >= total:
         print('Infelizmente estamos com todas as vagas ocupadas.')
         resposta = False
+    elif option == 1:
+        print(f'Sua vaga é: {indisponivel + 1}')
+        resposta = True
     else:
-        print(f'Sua vaga é: {ocupadas + 1}')
+
+        while i <= option:
+            print(i)
+            for item in veiculos[option - 2].values():
+                print(item)
+                indisponivel += item[0]
+                print(f'indisponivel = {indisponivel}')
+            i += 1
+            option -= 1
+
+
+
+        print(f'Sua vaga é: {indisponivel + 1}')
         resposta = True
 
     return resposta, option
+
+
 def pagamento(option, caixa):
 
     if (option == 1):
