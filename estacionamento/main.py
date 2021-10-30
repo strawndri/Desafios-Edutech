@@ -73,7 +73,7 @@ def realizar_escolha():
 
     if (op == 1):
         for item in veiculos[option - 1].values():
-
+            item[1] = item[1] + 1
         resposta = True
     elif (op == 2):
         resposta = False
