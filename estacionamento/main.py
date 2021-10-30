@@ -37,7 +37,7 @@ def menu(type):
 
 def realizar_escolha():
 
-    total, indisponivel, i= 0, 0, 1
+    total, indisponivel, i = 0, 0, 1
 
     while True:
         try:
@@ -64,18 +64,21 @@ def realizar_escolha():
             i += 1
 
         print(f'Sua vaga é: {indisponivel + 1}')
-        print(f'Valor a pagar: R$ {valor}')
 
-        menu('pagamento')
+    print(f'Valor a pagar: R$ {valor}')
 
-        op = int(input(f'> Opção escolhida: '))
+    menu('pagamento')
 
-        if (op == 1):
-            resposta = True
-        elif (op == 2):
-            resposta = False
-        elif (op == 3):
-            sistema()
+    op = int(input(f'> Opção escolhida: '))
+
+    if (op == 1):
+        for item in veiculos[option - 1].values():
+
+        resposta = True
+    elif (op == 2):
+        resposta = False
+    elif (op == 3):
+        sistema()
 
     return resposta, option
 
@@ -91,13 +94,15 @@ def pagamento(caixa, option):
     else:
         caixa += 50
 
+    return caixa
+
 def sistema():
+
     print_txt('Bem-vinda(o) ao nosso Estacionamento!', type='title')
     menu('principal')
     resposta, option = realizar_escolha()
-    print(resposta)
-    if (resposta == True):
-        pagamento(caixa, option)
+
+    return resposta, option
 
 
 # A ordem da lista dos veículos é: total de vagas / vagas ocupadas / preço
@@ -113,7 +118,13 @@ itens_finalizacao = ['Continuar Sistema', 'Fechar estacionamento']
 caixa = 0
 
 while True:
-    sistema()
+
+    resposta, option = sistema()
+
+    if (resposta == True):
+        caixa += pagamento(caixa, option)
+    elif (resposta == False):
+        break
 
     menu('finalizacao')
     opcao = int(input('> Opção Escolhida: '))
