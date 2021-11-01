@@ -30,7 +30,7 @@
 <table align="center">
   <thead>
     <tr>
-      <th colspan="2">Outras ações</th>
+      <th colspan="2">Quando não existem vagas disponíveis</th>
     </tr>
   </thead>
   <tbody>
@@ -48,7 +48,7 @@
 <table align="center">
   <thead>
     <tr>
-      <th colspan="2">Quando não existem vagas disponíveis:</th>
+      <th colspan="2">Outras Opções</th>
     </tr>
   </thead>
   <tbody>
