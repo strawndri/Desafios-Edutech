@@ -131,7 +131,7 @@ def cadastrar_vaga():
         print(f'Valor a pagar: R$ {valor:.2f}')
         option2 = tratamento_valor(op_pagamento)
 
-    resposta = False
+    resposta = True
     if (option2 == 1 and valor != 0):
         # organiza as vagas ocupadas e o total do dia
         for item in veiculos[option - 1].values():
@@ -153,7 +153,7 @@ veiculos = [
     {'Motos': [20, 0, 5.00, 0]},
     {'Carros': [30, 0, 15.00, 0]},
     {'Médio Porte': [20, 0, 20.00, 0]},
-    {'Grande Porte': [10, 10, 50.00, 0]}]
+    {'Grande Porte': [10, 0, 50.00, 0]}]
 
 op_pagamento = ['Finalizar Pagamento', 'Cancelar Pagamento', 'Escolher Outra opção']
 itens_finalizacao = ['Continuar Sistema', 'Remover vaga', 'Fechar estacionamento']
@@ -167,7 +167,10 @@ while True:
         caixa[option - 1] += pagamento(option)  # adiciona o pagamento ao caixa
 
     elif (resposta == False):
-        break  # processamento cancelado
+        print(f'option {option}')
+        print('Processamento cancelado...')  # processamento cancelado
+        menu('resultado final')
+        break
 
     menu('finalização') # finalicação do programa
     option3 = tratamento_valor(itens_finalizacao)
