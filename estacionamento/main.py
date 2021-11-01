@@ -32,8 +32,12 @@ def menu(type):
         print('-' * 50)
         print(f'Caixa: R$ {sum(caixa):.2f}')
 
-    elif (type == 'pagamento'):
+    elif (type == 'pagamento 01'):
         for i, item in enumerate(op_pagamento):
+            print(f'{i + 1} - {item}')
+
+    elif (type == 'pagamento 02'):
+        for i, item in enumerate(op_pagamento[1:]):
             print(f'{i + 1} - {item}')
 
     elif (type == 'finalização'):
@@ -56,6 +60,17 @@ def menu(type):
     print('—' * 50)
 
 
+# função que imprime uma barraga de carregamento
+def loading():
+    i, slice = 0, 4
+    while i <= 100:
+        print('\r', end='')
+        print(f'█' * slice, end=f' {i}%')
+        sleep(0.3)
+        i += 10
+        slice += 4
+    print()
+
 # função que exige o número correto a ser digitado
 def tratamento_valor(list):
     while True:
@@ -69,10 +84,11 @@ def tratamento_valor(list):
             else:
                 print(f' ┈ ┈ (!) O valor precisa ser entre 1 e {len(list)} (!) ┈ ┈ ')
 
+    loading()
     return option
 
 # função que realiza o pagamento do estacionamento
-def pagamento(caixa, option):
+def pagamento(option):
 
     for item in veiculos[option - 1].values():
         valor_estacionamento = item[2]
@@ -83,11 +99,12 @@ def pagamento(caixa, option):
 #função principal
 def cadastrar_vaga():
 
+    print_txt('Bem-vinda(o) ao nosso Estacionamento!', type='title')
+
     menu('principal')
-    total, indisponivel, i = 0, 0, 1
+    total, indisponivel, vaga, valor, i = 0, 0, 0, 0, 1
 
     option = tratamento_valor(veiculos)
-
 
     #salva o total de vagas, as indisponíveis e o valor a pagar
     for item in veiculos[option - 1].values():
@@ -95,41 +112,37 @@ def cadastrar_vaga():
         indisponivel = item[1]
         valor = item[2]
 
-        print(total, indisponivel)
-
-    vaga = indisponivel + 1
-
     #computando a vaga no sistema
     if indisponivel >= total:
         print('Infelizmente estamos com todas as vagas ocupadas.')
         valor = 0
-    elif option == 1:
-        print(f'Sua vaga é: {vaga}')
+        menu('pagamento 02')
+        option2 = tratamento_valor(op_pagamento[1:])
     else:
-        while i < option:
-            for item in veiculos[i - 1].values():
-                indisponivel += item[0]
-            i += 1
+        if option > 1:
+            while i < option:
+                for item in veiculos[i - 1].values():
+                    indisponivel += item[0]
+                i += 1
 
         vaga = indisponivel + 1
         print(f'Sua vaga é: {vaga}')
+        menu('pagamento 01')
+        print(f'Valor a pagar: R$ {valor:.2f}')
+        option2 = tratamento_valor(op_pagamento)
 
-    print(f'Valor a pagar: R$ {valor:.2f}')
-    menu('pagamento')
-
-    option2 = tratamento_valor(op_pagamento)
-
-    if (option2 == 1):
+    resposta = False
+    if (option2 == 1 and valor != 0):
         # organiza as vagas ocupadas e o total do dia
         for item in veiculos[option - 1].values():
             item[1] = item[1] + 1
             item[3] = item[3] + 1
         resposta = True # cliente confirmou o pagamento
 
-    elif (option2 == 2):
+    elif ((option2 == 2  and valor != 0) or (option2 == 1 and valor == 0)):
         resposta = False # cliente cancelou o pagamento
 
-    elif (option2 == 3):
+    elif ((option2 == 3 and valor != 0) or (option2 == 2 and valor == 0)):
         cadastrar_vaga() # cliente optou por outra classificação
 
     return resposta, option, vaga
@@ -140,39 +153,32 @@ veiculos = [
     {'Motos': [20, 0, 5.00, 0]},
     {'Carros': [30, 0, 15.00, 0]},
     {'Médio Porte': [20, 0, 20.00, 0]},
-    {'Grande Porte': [10, 0, 50.00, 0]}]
+    {'Grande Porte': [10, 10, 50.00, 0]}]
 
-op_pagamento = ['Finalizar Pagamento', 'Cancelar Pagamento', 'Escolher outra opção']
+op_pagamento = ['Finalizar Pagamento', 'Cancelar Pagamento', 'Escolher Outra opção']
 itens_finalizacao = ['Continuar Sistema', 'Remover vaga', 'Fechar estacionamento']
 caixa = [0, 0, 0, 0]
 total_ocupadas = 0
 
 while True:
-
-    print_txt('Bem-vinda(o) ao nosso Estacionamento!', type='title')
     resposta, option, vaga = cadastrar_vaga()
 
-    # adiciona o pagamento ao caixa
     if (resposta == True):
-        caixa[option - 1] += pagamento(caixa, option)
+        caixa[option - 1] += pagamento(option)  # adiciona o pagamento ao caixa
 
-    # processamento cancelado
     elif (resposta == False):
-        break
+        break  # processamento cancelado
 
-    sleep(1)
-
-    # finalicação do programa
-    menu('finalização')
+    menu('finalização') # finalicação do programa
     option3 = tratamento_valor(itens_finalizacao)
 
-    sleep(1)
-
-    # remove a vaga atual
-    if (option3 == 2):
+    if (option3 == 2): # remove a vaga atual
         for item in veiculos[option - 1].values():
-            item[1] = item[1] - 1
-            print(f'Liberando a vaga {vaga}...')
+            if (item[1] != 0):
+                item[1] = item[1] - 1
+                print(f'Liberando a vaga {vaga}...')
+            else:
+                print(f'Não foi possível remover a vaga {vaga}.')
 
     # finaliza o programa e apresenta o resultado final do dia
     elif (option3 == 3):
