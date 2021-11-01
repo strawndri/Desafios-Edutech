@@ -8,13 +8,13 @@
 3. Deste total de 80 vagas:
 - 20 vagas são exclusivas de motos e custam R$5;
 - 30 vagas são reservadas a carros R$15;
-- 20 vagas são reservadas a camionetes, vans abaixo de 15 lugares, micro-ônibus ou pequenos caminhões, e custam 20 reais;
+- 20 vagas são reservadas a caminhonetes, vans abaixo de 15 lugares, micro-ônibus ou pequenos caminhões, e custam 20 reais;
 - 10 vagas são reservadas a ônibus de até 40 passageiros e caminhões grandes e custam 50 reais.
 
 4. Todas as vagas são numeradas
 - As vagas de 1 a 20 são destinadas as motos;
 - As vagas de 21 a 50 são destinadas a carros;
-- As vagas de 51 a 70 são destinadas a camionetes, vans, micros e pequenos caminhões etc;
+- As vagas de 51 a 70 são destinadas a caminhonetes, vans, micros e pequenos caminhões etc;
 - As vagas de 71 as 80 são destinadas aos ônibus e caminhões grandes.
 
 5. O software é aberto no início do dia e fechado ao termino do expediente
