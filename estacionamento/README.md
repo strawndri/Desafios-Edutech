@@ -40,7 +40,7 @@
     </tr>
     <tr align="center">
       <td><img src="img/teste2.1.png" width="350px"></td>
-      <td><img src="img/teste2.2.png" witdh="200px"></td>
+      <td><img src="img/teste2.2.png" width="350px"></td>
     </tr>
   </tbody>
 </table>
@@ -58,7 +58,7 @@
     </tr>
     <tr align="center">
       <td><img src="img/teste3.1.png" width="350px"></td>
-      <td><img src="img/teste3.2.png" witdh="100px"></td>
+      <td><img src="img/teste3.2.png" width="300px"></td>
     </tr>
   </tbody>
 </table>
