@@ -1,5 +1,5 @@
 # Desafio Estacionamento - Exemplos de um possível processamento:
-
+> Você pode ver as instruções do desafio [clicando aqui](https://github.com/strawndri/Desafios-Edutech/blob/main/estacionamento/instrucoes.md)
 
 <table align="center">
   <thead>
